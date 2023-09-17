@@ -20,7 +20,7 @@ if [[ $STAGING -eq 1 ]]; then
   ADDITIONAL="--staging"
 fi
 
-DARRAYS=(${DOMAINS})
+DARRAYS=$(echo $DOMAINS | sed 's/*/wildcard/g')
 EMAIL_ADDRESS=${EMAIL}
 LE_DOMAINS=("${DARRAYS[*]/#/-d }")
 
@@ -69,7 +69,7 @@ le_renew() {
 }
 
 le_check() {
-    cert_file="/etc/letsencrypt/live/$(echo $DARRAYS | sed 's/*/wildcard/g')/fullchain.pem"
+    cert_file="/etc/letsencrypt/live/$DARRAYS/fullchain.pem"
 
     if [[ -e $cert_file ]]; then
 
