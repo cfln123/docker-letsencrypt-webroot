@@ -69,7 +69,7 @@ le_renew() {
 }
 
 le_check() {
-    cert_file="/etc/letsencrypt/live/$DARRAYS/fullchain.pem"
+    cert_file="/etc/letsencrypt/live/$(echo $DARRAYS | sed 's/*/wildcard/g')/fullchain.pem"
 
     if [[ -e $cert_file ]]; then
 
