@@ -116,11 +116,6 @@ le_check() {
       echo "Certificate request process finished for domain $DARRAYS"
     fi
 
-    if [ "$1" != "once" ]; then
-        sleep ${check_freq}d
-        le_check
-    fi
-
     docker stop nginx
 }
 
